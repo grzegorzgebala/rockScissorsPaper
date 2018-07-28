@@ -6,26 +6,41 @@ var button3 = document.getElementById("button3");
 var newGame = document.getElementById("newGame");
 var resultPlayer = 0;
 var resultComputer = 0;
-var maxRoundNumber, roundsNumber;
+var maxRoundNumber, roundsNumber, rounds;
+var finalResultPlayer, finalResultComputer;
 
 button1.addEventListener('click', function(){
+	checkRound();
 	playerMove('rock');
 });
 button2.addEventListener('click', function(){
+	checkRound();
 	playerMove('scissors');
 });
 button3.addEventListener('click', function(){
+	checkRound();
 	playerMove('paper');
 });
 newGame.addEventListener('click', function(){
 	newGameF();
 });
 
+function checkRound(){
+	if (finalResultPlayer >= rounds){
+		setTimeout(location.reload.bind(location), 100);
+		alert('FINISH - Winner is: PLAYER');
+	} if (finalResultComputer >= rounds){
+		setTimeout(location.reload.bind(location), 100);
+		alert('FINISH - Winner is: COMPUTER')
+	}
+}
+
 function newGameF(){
 	roundsNumber = prompt("Please enter max rounds number");
+	rounds = parseInt(roundsNumber);
     if (roundsNumber != null) {
         document.getElementById("maxRoundNumber").innerHTML = "Max rounds number is: " + roundsNumber;
-    } return roundsNumber;
+    } return rounds;
 }
 
 function playerMove(playerChoice){
@@ -66,11 +81,11 @@ function playerMove(playerChoice){
 	
 	var result = document.getElementById('result');
 	result.innerHTML = ('Result Player: ' + resultPlayer + ' - ' + 'Result Computer: ' + resultComputer);
-
-	if (resultPlayer < roundsNumber || resultComputer < roundsNumber){
-		alert = 'FINISH - Winner is: ' + winner;
-	}
+	finalResultPlayer = resultPlayer;
+	finalResultComputer = resultComputer;
 }
+
+
 
 
 
