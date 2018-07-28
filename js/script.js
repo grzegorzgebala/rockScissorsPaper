@@ -63,10 +63,11 @@ function playerMove(playerChoice){
 	} else if (winner === 'COMPUTER') {
 		resultComputer += 1;
 	}
-	while (resultPlayer < roundsNumber || resultComputer < roundsNumber){
+	
 	var result = document.getElementById('result');
 	result.innerHTML = ('Result Player: ' + resultPlayer + ' - ' + 'Result Computer: ' + resultComputer);
 
+	if (resultPlayer < roundsNumber || resultComputer < roundsNumber){
 		alert = 'FINISH - Winner is: ' + winner;
 	}
 }
