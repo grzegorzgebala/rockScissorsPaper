@@ -10,15 +10,12 @@ var maxRoundNumber, roundsNumber, rounds;
 var finalResultPlayer, finalResultComputer;
 
 button1.addEventListener('click', function(){
-	checkRound();
 	playerMove('rock');
 });
 button2.addEventListener('click', function(){
-	checkRound();
 	playerMove('scissors');
 });
 button3.addEventListener('click', function(){
-	checkRound();
 	playerMove('paper');
 });
 newGame.addEventListener('click', function(){
@@ -36,11 +33,13 @@ function checkRound(){
 }
 
 function newGameF(){
-	roundsNumber = prompt("Please enter max rounds number");
-	rounds = parseInt(roundsNumber);
-    if (roundsNumber != null) {
-        document.getElementById("maxRoundNumber").innerHTML = "Max rounds number is: " + roundsNumber;
-    } return rounds;
+	rounds = +prompt("Please enter max rounds number");
+	
+	if (rounds != null) {
+		document.getElementById("maxRoundNumber").innerHTML = "Max rounds number is: " + rounds;
+	} 
+	
+	return rounds;
 }
 
 function playerMove(playerChoice){
@@ -55,41 +54,28 @@ function playerMove(playerChoice){
 	} else if (value === 3){
 		computerChoice = 'scissors'
 	} 
+	
+	checkRound();
 
 	if (computerChoice === 'paper' && playerChoice === 'rock' || 
 		 computerChoice === 'scissors' && playerChoice === 'paper' ||
 		 computerChoice === 'rock' && playerChoice === 'scissors') {
 		winner = 'COMPUTER';
+		resultComputer += 1;
+		output.innerHTML = ('Winner is: ' + winner);
 	} else if (computerChoice === 'paper' && playerChoice === 'scissors' ||
 				computerChoice === 'scissors' && playerChoice === 'rock' ||
 				computerChoice === 'rock' && playerChoice === 'paper'){
 		winner = 'PLAYER';
-	}
-	
-	if (winner) {
+		resultPlayer += 1;
 		output.innerHTML = ('Winner is: ' + winner);
-	} else { 
+	} else {
 		output.innerHTML = ('Remis')
 	}
-	
-	
-	if (winner === 'PLAYER') {
-		resultPlayer += 1;
-	} else if (winner === 'COMPUTER') {
-		resultComputer += 1;
-	}
+
 	
 	var result = document.getElementById('result');
 	result.innerHTML = ('Result Player: ' + resultPlayer + ' - ' + 'Result Computer: ' + resultComputer);
 	finalResultPlayer = resultPlayer;
 	finalResultComputer = resultComputer;
 }
-
-
-
-
-
-
-
-
-
