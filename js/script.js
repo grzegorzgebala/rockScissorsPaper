@@ -9,38 +9,48 @@ var resultComputer = 0;
 var maxRoundNumber, roundsNumber, rounds;
 var finalResultPlayer, finalResultComputer;
 
-button1.addEventListener('click', function(){
-	checkRound();
-	playerMove('rock');
-});
-button2.addEventListener('click', function(){
-	checkRound();
-	playerMove('scissors');
-});
-button3.addEventListener('click', function(){
-	checkRound();
-	playerMove('paper');
-});
+var params = {
+	finalResultPlayer,
+	finalResultComputer,
+	rounds,
+	roundsNumber,
+	resultPlayer,
+	resultComputer,
+	finalResultPlayer,
+	finalResultComputer,
+};
+
 newGame.addEventListener('click', function(){
 	newGameF();
 });
 
+var div1 = document.getElementsByClassName("player-move");
+
+for (var i = 0; i < div1.length; i++) {
+	(function(i) {
+		div1[i].addEventListener('click', function(){
+			checkRound();
+			playerMove(div1[i].getAttribute("data-move"));
+		});
+	})(i)
+}
+
 function checkRound(){
-	if (finalResultPlayer >= rounds){
+	if (params.finalResultPlayer >= params.rounds){
 		setTimeout(location.reload.bind(location), 100);
 		alert('FINISH - Winner is: PLAYER');
-	} if (finalResultComputer >= rounds){
+	} if (params.finalResultComputer >= params.rounds){
 		setTimeout(location.reload.bind(location), 100);
 		alert('FINISH - Winner is: COMPUTER')
 	}
 }
 
 function newGameF(){
-	roundsNumber = prompt("Please enter max rounds number");
-	rounds = parseInt(roundsNumber);
-    if (roundsNumber != null) {
-        document.getElementById("maxRoundNumber").innerHTML = "Max rounds number is: " + roundsNumber;
-    } return rounds;
+	params.roundsNumber = prompt("Please enter max rounds number");
+	params.rounds = parseInt(params.roundsNumber);
+    if (params.roundsNumber != null) {
+        document.getElementById("maxRoundNumber").innerHTML = "Max rounds number is: " + params.roundsNumber;
+    } return params.rounds;
 }
 
 function playerMove(playerChoice){
@@ -74,15 +84,15 @@ function playerMove(playerChoice){
 	
 	
 	if (winner === 'PLAYER') {
-		resultPlayer += 1;
-	} else if (winner === 'COMPUTER') {
-		resultComputer += 1;
+		params.resultPlayer += 1;
+	} else if (params.winner === 'COMPUTER') {
+		params.resultComputer += 1;
 	}
 	
 	var result = document.getElementById('result');
-	result.innerHTML = ('Result Player: ' + resultPlayer + ' - ' + 'Result Computer: ' + resultComputer);
-	finalResultPlayer = resultPlayer;
-	finalResultComputer = resultComputer;
+	result.innerHTML = ('Result Player: ' + params.resultPlayer + ' - ' + 'Result Computer: ' + params.resultComputer);
+	params.finalResultPlayer = params.resultPlayer;
+	params.finalResultComputer = params.resultComputer;
 }
 
 
