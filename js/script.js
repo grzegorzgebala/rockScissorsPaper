@@ -77,9 +77,10 @@ function playerMove(playerChoice){
 	}
 	
 	if (winner) {
-		output.innerHTML = ('Winner is: ' + winner);
+		//output.innerHTML = ('Winner is: ' + winner);
+		showModal;
 	} else { 
-		output.innerHTML = ('Remis')
+		//output.innerHTML = ('Remis')
 	}
 	
 	
@@ -95,7 +96,7 @@ function playerMove(playerChoice){
 	params.finalResultComputer = params.resultComputer;
 }
 
-(function(){ 
+//(function(){ 
 	
 	var showModal = function(event){
 		event.preventDefault();
@@ -135,7 +136,7 @@ function playerMove(playerChoice){
 		});
 	};
 	
-})(); 
+//})(); 
 
 
 
