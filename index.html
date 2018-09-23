@@ -14,13 +14,33 @@
 		</header>
 		<main>
 			<h2>Make your choice:</h2>
-			<button id="button1" type="button">ROCK</button> 
-			<button id="button2" type="button">SCISSORS</button> 
-			<button id="button3" type="button">PAPER</button> 
+			<button class="player-move" id="button1" type="button" data-move="rock">ROCK</button> 
+			<button class="player-move" id="button2" type="button" data-move="scissors">SCISSORS</button> 
+			<button class="player-move" id="button3" type="button" data-move="paper">PAPER</button> 
 			<div id="output"></div>
 			<div id="result"></div>
 			<button id="newGame" type="button">NEW GAME</button>
 			<div id="maxRoundNumber"></div>
+			<div class="overlay" id="modal-overlay">
+				<div class="modal" id="modal-one">
+					<a href="#" class="close">x</a>
+					<header>END GAME</header>
+					<p>Results:</p>
+					<div class="content">
+						<table id="results" class="hide">
+							<thead>
+								<tr>
+									<th>Computer</th>
+									<th>Player</th>
+									<th>Winner</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</main>
 		<script src="js/script.js"></script>
 	</body>	
