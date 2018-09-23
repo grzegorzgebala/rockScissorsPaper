@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2018 by anonymous (http://jsbin.com/miwewepuvu/4/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+</style>
+</head>
+<body>
+  <button id="test">Ruch gry</button>
+  
+  <div id="modal">
+    <table id="results" class="hide">
+      <thead>
+        <tr>
+          <th>Computer</th>
+          <th>Player</th>
+          <th>Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+<script id="jsbin-javascript">
+var MAX_ROUNDS = 3;
+var TABLE_ELEMENT = document.querySelector('#results');
+
+var params = {
+  rounds: [],
+  currentRound: 0,
+};
+
+function generateDataModal(data) {
+  var content = '';
+  
+  for (var i = 0; i < data.length; i++) {
+    content += '<tr>\
+      <td>' + data[i].computerChoice + '</td>\
+      <td>' + data[i].playerChoice + '</td>\
+      <td>' + data[i].winner + '</td>\
+    </tr>';
+  }
+  
+  return content;
+}
+
+function setTableModal(data) {
+  TABLE_ELEMENT.querySelector('tbody').innerHTML = data;
+}
+
+function showModal() {
+  TABLE_ELEMENT.classList.remove('hide');
+  TABLE_ELEMENT.classList.add('show');
+}
+
+function generateRound() {
+  return {
+    winner: ['Player', 'Computer'][Math.floor(Math.random() * 2)],
+    playerChoice: ['ROCK', 'PAPER', 'SCISSORS'][Math.floor(Math.random() * 3)],
+    computerChoice: ['ROCK', 'PAPER', 'SCISSORS'][Math.floor(Math.random() * 3)],
+  };
+}
+
+function move() {
+  if (params.currentRound === MAX_ROUNDS) {
+    var data = generateDataModal(params.rounds);
+    setTableModal(data);
+    showModal();
+    console.log(params.rounds);
+    return;
+  }
+      
+  params.currentRound++;
+  params.rounds.push(generateRound());
+}
+
+var btn = document.getElementById('test');
+
+btn.addEventListener('click', function() {
+  move();
+});
+
+
+
+</script>
+</body>
+</html>

@@ -15,6 +15,9 @@ body {
 	text-align: center;
 }
 
+.hide {
+	display: none;
+}
 .overlay {
 	display: none;
 	position: fixed;
@@ -26,13 +29,15 @@ body {
 	
 	&.show {
 		display: block;
+		
 	}
 }
 
 .modal {
 	display: none;
+	
 	background: #fff;
-	width: 200px;
+	width: 40%;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -57,10 +62,22 @@ body {
 		min-height: 30px;
 		font-weight: bold;
 		padding: 0 30px;
+		text-align: center;
 	}
 
 	.content {
 		min-height: 30px;
 		padding: 5px 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	td {
+		padding-left: 20px;
+	}
+
+	th {
+		padding-left: 20px;
 	}
 }

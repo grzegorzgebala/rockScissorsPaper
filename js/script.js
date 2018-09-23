@@ -6,8 +6,10 @@ var button3 = document.getElementById("button3");
 var newGame = document.getElementById("newGame");
 var resultPlayer = 0;
 var resultComputer = 0;
+var remis = 0;
 var maxRoundNumber, roundsNumber, rounds;
 var finalResultPlayer, finalResultComputer;
+var TABLE_ELEMENT = document.querySelector('#results');
 
 var params = {
 	finalResultPlayer,
@@ -16,8 +18,10 @@ var params = {
 	roundsNumber,
 	resultPlayer,
 	resultComputer,
+	remis,
 	finalResultPlayer,
 	finalResultComputer,
+	progress: [],
 };
 
 newGame.addEventListener('click', function(){
@@ -35,22 +39,9 @@ for (var i = 0; i < div1.length; i++) {
 	})(i)
 }
 
-function checkRound(){
-	if (params.finalResultPlayer >= params.rounds){
-		setTimeout(location.reload.bind(location), 100);
-		alert('FINISH - Winner is: PLAYER');
-	} if (params.finalResultComputer >= params.rounds){
-		setTimeout(location.reload.bind(location), 100);
-		alert('FINISH - Winner is: COMPUTER')
-	}
-}
 
-function newGameF(){
-	params.roundsNumber = prompt("Please enter max rounds number");
-	params.rounds = parseInt(params.roundsNumber);
-    if (params.roundsNumber != null) {
-        document.getElementById("maxRoundNumber").innerHTML = "Max rounds number is: " + params.roundsNumber;
-    } return params.rounds;
+function setTableModal(data) {
+  TABLE_ELEMENT.querySelector('tbody').innerHTML = data;
 }
 
 function playerMove(playerChoice){
@@ -74,50 +65,87 @@ function playerMove(playerChoice){
 				computerChoice === 'scissors' && playerChoice === 'rock' ||
 				computerChoice === 'rock' && playerChoice === 'paper'){
 		winner = 'PLAYER';
+	} else if (computerChoice === 'paper' && playerChoice === 'paper' ||
+				computerChoice === 'scissors' && playerChoice === 'scissors' ||
+				computerChoice === 'rock' && playerChoice === 'rock'){
+		winner = 'REMIS';
 	}
-	
-	if (winner) {
-		//output.innerHTML = ('Winner is: ' + winner);
-		showModal;
-	} else { 
-		//output.innerHTML = ('Remis')
-	}
-	
 	
 	if (winner === 'PLAYER') {
 		params.resultPlayer += 1;
-	} else if (params.winner === 'COMPUTER') {
+	} else if (winner === 'COMPUTER') {
 		params.resultComputer += 1;
+	} else if (winner === 'REMIS') {
+		params.remis += 1;
 	}
 	
 	var result = document.getElementById('result');
-	result.innerHTML = ('Result Player: ' + params.resultPlayer + ' - ' + 'Result Computer: ' + params.resultComputer);
+	result.innerHTML = ('Result Player: ' + params.resultPlayer + ' - ' + 'Result Computer: ' + params.resultComputer + ' - ' + 'REMIS: ' + params.remis);
 	params.finalResultPlayer = params.resultPlayer;
 	params.finalResultComputer = params.resultComputer;
+
+	var finalWinner;
+	if (params.resultPlayer > params.resultComputer) {
+		finalWinner = 'PLAYER';
+	} else if (params.resultComputer > params.resultPlayer) {
+		finalWinner = 'COMPUTER';
+	} else finalWinner = 'REMIS';
+
+	params.progress.push({computerChoice: computerChoice, playerChoice: playerChoice, winner: winner, finalWinner: finalWinner});
+	
 }
 
-//(function(){ 
+function checkRound(){
+	if (params.finalResultPlayer >= params.rounds){
+		var data = generateDataModal(params.progress);
+    	setTableModal(data);
+		showModal();
+		//alert('FINISH - Winner is: PLAYER');
+		
+	} if (params.finalResultComputer >= params.rounds){
+		var data = generateDataModal(params.progress);
+    	setTableModal(data);
+		showModal();
+		//alert('FINISH - Winner is: COMPUTER')
+	}
+}
+
+function newGameF(){
+	params.roundsNumber = prompt("Please enter max rounds number");
+	params.rounds = parseInt(params.roundsNumber);
+    if (params.roundsNumber != null) {
+        document.getElementById("maxRoundNumber").innerHTML = "Max rounds number is: " + params.roundsNumber;
+    } return 
+    params.rounds;
+}
+
+
+
+function generateDataModal(data) {
+  var content = '';
+  
+  for (var i = 0; i < data.length; i++) {
+    content += '<tr>\
+      <td>' + data[i].computerChoice + '</td>\
+      <td>' + data[i].playerChoice + '</td>\
+      <td>' + data[i].winner + '</td>\
+    </tr>';
+  }
+  content += '<div>Final Winner is: ' + params.progress.finalWinner + '</div>';
+  return content;
+}
+
+
 	
-	var showModal = function(event){
-		event.preventDefault();
-		var a = document.getElementsByClassName("modal");
-
-		for (var i = 0; i < a.length; i++) {
-			a[i].classList.remove('show');
-		}
-
-		document.querySelector(event.target.getAttribute('href')).classList.add('show');
+	var showModal = function(){
+		TABLE_ELEMENT.classList.remove('hide');
+  		TABLE_ELEMENT.classList.add('show');
+		document.querySelector('#modal-one').classList.add('show');
 		document.getElementById('modal-overlay').classList.add('show');
 	};
-	
-	var modalLinks = document.querySelectorAll('.show-modal');
-	
-	for(var i = 0; i < modalLinks.length; i++){
-		modalLinks[i].addEventListener('click', showModal);
-	};
 
-	var hideModal = function(event){
-		event.preventDefault();
+	var hideModal = function(){
+		document.querySelector('#modal-one').classList.remove('show');
 		document.querySelector('#modal-overlay').classList.remove('show');
 	};
 	
@@ -135,13 +163,3 @@ function playerMove(playerChoice){
 			event.stopPropagation();
 		});
 	};
-	
-//})(); 
-
-
-
-
-
-
-
-
