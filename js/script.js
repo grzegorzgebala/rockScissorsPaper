@@ -25,18 +25,6 @@ var params = {
 	progress: [],
 };
 
-<<<<<<< HEAD
-button1.addEventListener('click', function(){
-	playerMove('rock');
-});
-button2.addEventListener('click', function(){
-	playerMove('scissors');
-});
-button3.addEventListener('click', function(){
-	playerMove('paper');
-});
-=======
->>>>>>> jsBranch
 newGame.addEventListener('click', function(){
 	newGameF();
 });
@@ -52,20 +40,9 @@ for (var i = 0; i < div1.length; i++) {
 	})(i)
 }
 
-<<<<<<< HEAD
-function newGameF(){
-	rounds = +prompt("Please enter max rounds number");
-	
-	if (rounds != null) {
-		document.getElementById("maxRoundNumber").innerHTML = "Max rounds number is: " + rounds;
-	} 
-	
-	return rounds;
-=======
-
 function setTableModal(data) {
   TABLE_ELEMENT.querySelector('tbody').innerHTML = data;
->>>>>>> jsBranch
+
 }
 
 function playerMove(playerChoice){
@@ -80,8 +57,6 @@ function playerMove(playerChoice){
 	} else if (value === 3){
 		computerChoice = 'scissors'
 	} 
-	
-	checkRound();
 
 	if (computerChoice === 'paper' && playerChoice === 'rock' || 
 		 computerChoice === 'scissors' && playerChoice === 'paper' ||
@@ -93,20 +68,7 @@ function playerMove(playerChoice){
 				computerChoice === 'scissors' && playerChoice === 'rock' ||
 				computerChoice === 'rock' && playerChoice === 'paper'){
 		winner = 'PLAYER';
-<<<<<<< HEAD
-		resultPlayer += 1;
-		output.innerHTML = ('Winner is: ' + winner);
-	} else {
-		output.innerHTML = ('Remis')
-	}
 
-	
-	var result = document.getElementById('result');
-	result.innerHTML = ('Result Player: ' + resultPlayer + ' - ' + 'Result Computer: ' + resultComputer);
-	finalResultPlayer = resultPlayer;
-	finalResultComputer = resultComputer;
-}
-=======
 	} else if (computerChoice === 'paper' && playerChoice === 'paper' ||
 				computerChoice === 'scissors' && playerChoice === 'scissors' ||
 				computerChoice === 'rock' && playerChoice === 'rock'){
@@ -212,4 +174,3 @@ function generateDataModal(data) {
 			event.stopPropagation();
 		});
 	};
->>>>>>> jsBranch
