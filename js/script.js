@@ -7,6 +7,7 @@ var newGame = document.getElementById("newGame");
 var resultPlayer = 0;
 var resultComputer = 0;
 var remis = 0;
+var finalWinner;
 var maxRoundNumber, roundsNumber, rounds;
 var finalResultPlayer, finalResultComputer;
 var TABLE_ELEMENT = document.querySelector('#results');
@@ -84,7 +85,7 @@ function playerMove(playerChoice){
 	params.finalResultPlayer = params.resultPlayer;
 	params.finalResultComputer = params.resultComputer;
 
-	var finalWinner;
+	
 	if (params.resultPlayer > params.resultComputer) {
 		finalWinner = 'PLAYER';
 	} else if (params.resultComputer > params.resultPlayer) {
@@ -131,7 +132,7 @@ function generateDataModal(data) {
       <td>' + data[i].winner + '</td>\
     </tr>';
   }
-  content += '<div>Final Winner is: ' + params.progress.finalWinner + '</div>';
+  content += '<div class="finalWinner">Final Winner is: ' + finalWinner + '</div>';
   return content;
 }
 
