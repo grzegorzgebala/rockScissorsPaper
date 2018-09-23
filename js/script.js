@@ -63,7 +63,6 @@ function playerMove(playerChoice){
 		 computerChoice === 'rock' && playerChoice === 'scissors') {
 		winner = 'COMPUTER';
 		resultComputer += 1;
-		output.innerHTML = ('Winner is: ' + winner);
 	} else if (computerChoice === 'paper' && playerChoice === 'scissors' ||
 				computerChoice === 'scissors' && playerChoice === 'rock' ||
 				computerChoice === 'rock' && playerChoice === 'paper'){
