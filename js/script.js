@@ -116,8 +116,15 @@ function newGameF(){
 	params.rounds = parseInt(params.roundsNumber);
     if (params.roundsNumber != null) {
         document.getElementById("maxRoundNumber").innerHTML = "Max rounds number is: " + params.roundsNumber;
-    } return 
-    params.rounds;
+    }
+    params.progress = [];
+    params.finalResultPlayer = 0;
+    params.finalResultComputer = 0;
+    var result = document.getElementById('result');
+    result.innerHTML = '';
+    params.resultPlayer = 0;
+    params.resultComputer = 0;
+    params.remis = 0;
 }
 
 
