@@ -1,29 +1,72 @@
-h1 { text-align: center; }
+h1 {
+  text-align: center; }
 
-h2 { text-align: center; }
+h2 {
+  text-align: center; }
 
-main { text-align: center; }
+main {
+  text-align: center; }
+  main button {
+    height: 50px;
+    width: 100px;
+    margin: 20px 20px;
+    background: #6f73b7;
+    border: 2px solid black; }
 
-body { padding: 10px; text-align: center; }
+body {
+  padding: 10px;
+  text-align: center; }
 
-.hide { display: none; }
+.hide {
+  display: none; }
 
-.overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); }
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); }
+  .overlay.show {
+    display: block; }
 
-.overlay.show { display: block; }
+.modal {
+  display: none;
+  background: #fff;
+  width: 40%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0); }
+  .modal.show {
+    display: block; }
+  .modal .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px;
+    color: #000;
+    text-decoration: none; }
+  .modal header {
+    font-size: 20px;
+    line-height: 30px;
+    min-height: 30px;
+    font-weight: bold;
+    padding: 0 30px;
+    text-align: center; }
+  .modal .content {
+    min-height: 30px;
+    padding: 5px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .modal td {
+    padding-left: 20px; }
+  .modal th {
+    padding-left: 20px; }
 
-.modal { display: none; background: #fff; width: 40%; position: absolute; top: 50%; left: 50%; transform: translate3d(-50%, -50%, 0); }
+.finalWinner {
+  padding-top: 30px; }
 
-.modal.show { display: block; }
-
-.modal .close { position: absolute; right: 0; top: 0; padding: 5px; color: #000; text-decoration: none; }
-
-.modal header { font-size: 20px; line-height: 30px; min-height: 30px; font-weight: bold; padding: 0 30px; text-align: center; }
-
-.modal .content { min-height: 30px; padding: 5px 30px; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; }
-
-.modal td { padding-left: 20px; }
-
-.modal th { padding-left: 20px; }
-
-.finalWinner { padding-top: 30px; }
+/*# sourceMappingURL=style.css.map */
